@@ -39,7 +39,6 @@ class CustomView: NSView {
         if let type = event.cgEvent?.type {
             if MouseEvent(type, mouseLocation.x, mouseLocation.y) == 1 {
                 setNeedsDisplay(bounds)
-                //self.view.setNeedsDisplay(view.bounds)
             }
         }
     }
@@ -57,7 +56,9 @@ class CustomView: NSView {
     override func mouseExited(with event: NSEvent) { mouseEvent(event) }
     override func keyDown(with event: NSEvent) {
         if let str = event.characters {
-            KeyDown(str)
+            if KeyDown(str) == 1 {
+                setNeedsDisplay(bounds)
+            }
         }
     }
 }
